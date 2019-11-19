@@ -10,10 +10,9 @@ class Home extends React.Component {
         
         return(
             <>
-            <h1>Film Information</h1>
+            
             <div className="row" >
-            <MoviePoster/>
-                
+                <MoviePoster/>
             </div>
             </>
         )

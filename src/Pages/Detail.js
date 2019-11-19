@@ -47,11 +47,24 @@ class Detail extends React.Component {
     }
     render(){
         if(this.state.data){
-          
+            let film = this.state.data;
             return (
+                <div className="container text-center border border-secondary py-3 my-3">
+                    <h2>{film.Title}</h2>
+                    <img src={film.Poster} className="my-3" alt={film.Title} />
+                    <p>{film.Plot}</p>
+                    <p>Director: {film.Director}</p>
+                    <p>Actors: {film.Actors}</p>
+                    <p>Genre: {film.Genre}</p>
+                    <p>Runtime: {film.Runtime}</p>
+                    <p>Year: {film.Year}</p>
+                    <NavLink exact to="/" className="btn btn-primary">
+                        Go Back
+                    </NavLink>
+                </div>
 
       
-              <p>{this.state.data.Title}</p>
+              
 
             )
         } else {

@@ -1,33 +1,39 @@
 
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 
 class NavBar extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            value: '',
+        };
     
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+      }
     
+    handleChange(event) {
+        this.setState({value: event.target.value});
+        console.log(event.target.value);
+    }
+
+    handleSubmit(event) {
+        
+        event.preventDefault();
+        console.log(this.state.value);
+    }
+
     render() {
         
         return(
-            <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-                <div className="collapse navbar-collapse" id="navbarTogglerDemo01">
-                    <a className="navbar-brand" href="/">Hidden brand</a>
-                    <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
-                    <li className="nav-item active">
-                        <NavLink className="nav-link" to="/">Home</NavLink>
-                    </li>
-                    <li className="nav-item">
-                        <NavLink className="nav-link" to="/archivio">Archivio</NavLink>
-                    </li>
+            <nav className="navbar navbar-light bg-light justify-content-center">
 
-                    </ul>
-                    <form className="form-inline my-2 my-lg-0">
-                    <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
-                    <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                    </form>
-                </div>
+                <a className="navbar-brand" href="/">Film Info</a>
+                <form className="form-inline my-2 my-lg-0" onSubmit={this.handleSubmit} >
+                    <input className="form-control mr-sm-2" value={this.state.value} onChange={this.handleChange} type="text" placeholder="Search" aria-label="Search"/>
+                    <button onClick={this.onSubmit} className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+                
             </nav>
         )
   

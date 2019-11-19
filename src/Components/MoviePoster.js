@@ -2,17 +2,19 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
+
 class MoviePoster extends React.Component { 
         constructor(props) {
         super(props);
         this.state = {
             data: "",
+            value: "batman"
         };
     }  
 
     componentDidMount(){
-
-        fetch("http://www.omdbapi.com/?s=Batman&page=2&apikey=7e18b2af")
+        let value = this.state.value;
+        fetch("http://www.omdbapi.com/?s="+value+"&apikey=7e18b2af")
             .then(response => {
                 console.log(response.status);
                 this.setState({ response: response }, () => console.log(this.state));
@@ -53,12 +55,12 @@ class MoviePoster extends React.Component {
                     <div className="col-lg-3 col-md-4 col-sm-6" key={film.imdbID} >
 
                         <div className="card" >
-                            <img src={film.Poster} alt="img" />
+                            <img src={film.Poster} alt={film.Title} />
                             <div className="card-body">
                                 <h5 className="card-title">{film.Title}</h5>
                                 <p className="card-text">{film.Year}</p>
                                 <NavLink exact to={ `/${film.imdbID}` } className="btn btn-primary">
-                                    Go somewhere
+                                    Go to detail
                                 </NavLink>
                             </div>
                         </div>
