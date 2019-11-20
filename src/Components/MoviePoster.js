@@ -4,48 +4,19 @@ import { NavLink } from 'react-router-dom';
 import IsLoading from './IsLoading';
 
 class MoviePoster extends React.Component { 
-        constructor(props) {
-        super(props);
-        this.state = {
-            data: "",
-            value: ""
-        };
-    }  
-
-    componentDidUpdate(){
-        let value = this.props.searchValue;
-        const API_KEY = "apikey=7e18b2af";
-
-        if(value!==this.state.value){
-        fetch(`https://www.omdbapi.com/?s=${value}&${API_KEY}`)
-            .then(response => {
-                console.log(response.status);
-                this.setState({ response: response, value: value }, () => console.log(this.state));
-                return response.json();
-            })
-            .then(data => {
-                console.log("success", data);
-                this.setState({
-                    ajaxCompleted: true,
-                    data: data,
-               
-                }, () => console.log(this.state));
-            })
-            .catch(error => this.setState({ error: error }));
-        }       
-    }
 
     render(){
-        
-        if(this.state.data.Search){
-            let films = this.state.data.Search;
+      
+        if(this.props.ricerca){
+            var films = this.props.ricerca.Search;
+            
             return (
 
             <>
                 {films.map( film => 
 
                 (
-                    <div className="col-lg-3 col-md-4 col-sm-6" key={film.imdbID} >
+                    <div className="col-lg-3 col-md-4 col-sm-6 py-2" key={film.imdbID} >
 
                         <div className="card" >
                             <img src={film.Poster} alt={film.Title} />
@@ -63,12 +34,12 @@ class MoviePoster extends React.Component {
             </>
             )
         }
-        if(this.state.error) {
-            let error = this.state.error;
+        if(this.props.error) {
+            let error = this.props.error;
             return <p>{error}</p>
         }
-        if(!this.state.data.Search){
-            return null
+        if(!this.props.ricerca){
+            return null;
         }
         return <IsLoading/>
     }
