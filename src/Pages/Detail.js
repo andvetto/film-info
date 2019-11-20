@@ -35,6 +35,25 @@ class Detail extends React.Component {
             .catch(error => this.setState({ error: error }));
     }
     
+   manda() {
+       let film = this.state.data;
+        fetch("http://localhost:3001/posts", {
+            method: "POST",
+            body: JSON.stringify({ 
+                "title" : `${film.Title}`,
+                "year" : `${film.Year}`,
+                "plot" : `${film.Plot}`,
+                "genre" : `${film.Genre}`,
+                "actors" : `${film.Actors}`,
+                "director" : `${film.Director}`,
+                "runtime" : `${film.Runtime}`,
+                "img" : `${film.Poster}`,
+                }),
+            headers: {"Content-Type" : "application/json"}
+
+        });
+    }
+
     render(){
         if(this.state.data){
             let film = this.state.data;
@@ -51,6 +70,9 @@ class Detail extends React.Component {
                     <NavLink exact to="/" className="btn btn-primary">
                         Go Back
                     </NavLink>
+                    <button onClick={this.manda()} className="btn btn-dark mx-2">
+                        Post
+                    </button>
                 </div>
 
       

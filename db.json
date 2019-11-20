@@ -1,0 +1,47 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "title": "pippo",
+      "id": 2
+    },
+    {
+      "title": "Batman Begins",
+      "id": 3
+    },
+    {
+      "title": "Joker",
+      "id": 4
+    },
+    {
+      "title": "Joker",
+      "year": "2019",
+      "id": 5
+    },
+    {
+      "title": "Joker",
+      "year": "2019",
+      "plot": "In Gotham City, mentally-troubled comedian Arthur Fleck is disregarded and mistreated by society. He then embarks on a downward spiral of revolution and bloody crime. This path brings him face-to-face with his alter-ego: \"The Joker\".",
+      "genre": "Crime, Drama, Thriller",
+      "actors": "Joaquin Phoenix, Robert De Niro, Zazie Beetz, Frances Conroy",
+      "director": "Todd Phillips",
+      "runtime": "122 min",
+      "img": "https://m.media-amazon.com/images/M/MV5BNGVjNWI4ZGUtNzE0MS00YTJmLWE0ZDctN2ZiYTk2YmI3NTYyXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SX300.jpg",
+      "id": 6
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
