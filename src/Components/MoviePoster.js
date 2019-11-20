@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import IsLoading from './IsLoading';
 
 
 class MoviePoster extends React.Component { 
@@ -14,7 +15,7 @@ class MoviePoster extends React.Component {
 
     componentDidMount(){
         let value = this.state.value;
-        fetch("http://www.omdbapi.com/?s="+value+"&apikey=7e18b2af")
+        fetch(`https://www.omdbapi.com/?s=${value}&apikey=7e18b2af`)
             .then(response => {
                 console.log(response.status);
                 this.setState({ response: response }, () => console.log(this.state));
@@ -27,25 +28,14 @@ class MoviePoster extends React.Component {
                     data: data,
                
                 }, () => console.log(this.state));
-
-               
-
             })
-            /*
-            .catch(error => {
-                console.log("error", JSON.stringify(error));
-                this.setState({
-                    ajaxCompleted: true,
-                    status: false,
-                    data: JSON.stringify(error),
-                    strip: "https://image.freepik.com/free-vector/error-404-found-glitch-effect_8024-4.jpg",
-                });
-            });
-            */
+            .catch(error => this.setState({ error: error }));    
     }
+
     render(){
+
         if(this.state.data.Search){
-            var films = this.state.data.Search;
+            let films = this.state.data.Search;
             return (
 
             <>
@@ -69,9 +59,12 @@ class MoviePoster extends React.Component {
 
             </>
             )
-        } else {
-            return <p>Is Loading...</p>
         }
+        if(this.state.error) {
+            let error = this.state.error;
+            return <p>{error}</p>
+        }
+        return <IsLoading/>
     }
 }
 export default MoviePoster;

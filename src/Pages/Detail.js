@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import IsLoading from '../Components/IsLoading';
 
 class Detail extends React.Component { 
 
@@ -16,7 +17,7 @@ class Detail extends React.Component {
 
         let imdbID = this.props.match.params.imdbID;
 
-        fetch(`http://www.omdbapi.com/?i=${imdbID}&apikey=7e18b2af`)
+        fetch(`https://www.omdbapi.com/?i=${imdbID}&apikey=7e18b2af`)
             .then(response => {
                 console.log(response.status);
                 this.setState({ response: response }, () => console.log(this.state));
@@ -29,22 +30,10 @@ class Detail extends React.Component {
                     data: data,
                
                 }, () => console.log(this.state));
-
-               
-
             })
-            /*
-            .catch(error => {
-                console.log("error", JSON.stringify(error));
-                this.setState({
-                    ajaxCompleted: true,
-                    status: false,
-                    data: JSON.stringify(error),
-                    strip: "https://image.freepik.com/free-vector/error-404-found-glitch-effect_8024-4.jpg",
-                });
-            });
-            */
+            .catch(error => this.setState({ error: error }));
     }
+    
     render(){
         if(this.state.data){
             let film = this.state.data;
@@ -67,9 +56,12 @@ class Detail extends React.Component {
               
 
             )
-        } else {
-            return <p>Is Loading...</p>
         }
+        if(this.state.error) {
+            let error = this.state.error;
+            return <p>{error}</p>
+        }
+        return <IsLoading/>
     }
 }
 export default Detail;
