@@ -1,8 +1,13 @@
 @import url("https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css");
+@import url('https://fonts.googleapis.com/css?family=Vollkorn&display=swap');
 
 #showResults{
     background: url("https://www.thetravelmagazine.net/wp-content/uploads/film-travel.jpg");
     min-height: 600px;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+#name{
+    font-family: 'Vollkorn', serif;
 }

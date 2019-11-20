@@ -36,8 +36,10 @@ class Detail extends React.Component {
     }
     
    manda() {
+
        let film = this.state.data;
-        fetch("http://localhost:3001/posts", {
+   
+        fetch("http://localhost:3004/posts", {
             method: "POST",
             body: JSON.stringify({ 
                 "title" : `${film.Title}`,
@@ -51,14 +53,15 @@ class Detail extends React.Component {
                 }),
             headers: {"Content-Type" : "application/json"}
 
-        });
+        })
+        
     }
 
     render(){
         if(this.state.data){
             let film = this.state.data;
             return (
-                <div className="container text-center border border-secondary py-3 my-3">
+                <div className="container text-center border border-secondary py-3">
                     <h2>{film.Title}</h2>
                     <img src={film.Poster} className="my-3" alt={film.Title} />
                     <p>{film.Plot}</p>
@@ -70,8 +73,8 @@ class Detail extends React.Component {
                     <NavLink exact to="/" className="btn btn-primary">
                         Go Back
                     </NavLink>
-                    <button onClick={this.manda()} className="btn btn-dark mx-2">
-                        Post
+                    <button onClick={this.manda()} className="btn btn-danger mx-2">
+                        Film Preferito
                     </button>
                 </div>
 

@@ -17,9 +17,9 @@ function App() {
   return (
     <Router>
       
-      <div className="App container-fluid text-center">
+      <div className="App container-fluid bg-dark text-light text-center">
         
-        <h1 className="my-3">Film Information</h1>
+        <h1 id="name" className="py-3">Film Information</h1>
         <main>
           <Route exact path="/" component={Home} />
           <Route exact path="/:imdbID" component={Detail} />

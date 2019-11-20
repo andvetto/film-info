@@ -20,7 +20,7 @@ class MoviePoster extends React.Component {
 
                         <div className="card" >
                             <img src={film.Poster} alt={film.Title} />
-                            <div className="card-body">
+                            <div className="card-body text-dark">
                                 <h5 className="card-title">{film.Title}</h5>
                                 <p className="card-text">{film.Year}</p>
                                 <NavLink exact to={ `/${film.imdbID}` } className="btn btn-primary">
