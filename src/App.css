@@ -1,1 +1,8 @@
 @import url("https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css");
+
+#pippo{
+    background: url("https://content1.jdmagicbox.com/comp/def_content/film_production_houses/default-film-production-houses-6.jpg");
+    min-height: 600px;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

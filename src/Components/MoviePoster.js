@@ -3,22 +3,24 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import IsLoading from './IsLoading';
 
-
 class MoviePoster extends React.Component { 
         constructor(props) {
         super(props);
         this.state = {
             data: "",
-            value: "batman"
+            value: ""
         };
     }  
 
-    componentDidMount(){
-        let value = this.state.value;
-        fetch(`https://www.omdbapi.com/?s=${value}&apikey=7e18b2af`)
+    componentDidUpdate(){
+        let value = this.props.searchValue;
+        const API_KEY = "apikey=7e18b2af";
+
+        if(value!==this.state.value){
+        fetch(`https://www.omdbapi.com/?s=${value}&${API_KEY}`)
             .then(response => {
                 console.log(response.status);
-                this.setState({ response: response }, () => console.log(this.state));
+                this.setState({ response: response, value: value }, () => console.log(this.state));
                 return response.json();
             })
             .then(data => {
@@ -29,11 +31,12 @@ class MoviePoster extends React.Component {
                
                 }, () => console.log(this.state));
             })
-            .catch(error => this.setState({ error: error }));    
+            .catch(error => this.setState({ error: error }));
+        }       
     }
 
     render(){
-
+        
         if(this.state.data.Search){
             let films = this.state.data.Search;
             return (
@@ -63,6 +66,9 @@ class MoviePoster extends React.Component {
         if(this.state.error) {
             let error = this.state.error;
             return <p>{error}</p>
+        }
+        if(!this.state.data.Search){
+            return null
         }
         return <IsLoading/>
     }

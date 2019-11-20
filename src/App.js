@@ -1,7 +1,8 @@
 import React from 'react';
 import Home from './Pages/Home';
 import Detail from './Pages/Detail';
-import NavBar from './Components/NavBar';
+
+import Footer from './Components/Footer';
 import {
   BrowserRouter as Router,
   Route,
@@ -10,9 +11,12 @@ import {
 import './App.css';
 
 function App() {
+
+
+
   return (
     <Router>
-      <NavBar />
+      
       <div className="App container-fluid text-center">
         
         <h1 className="my-3">Film Information</h1>
@@ -20,13 +24,9 @@ function App() {
           <Route exact path="/" component={Home} />
           <Route exact path="/:imdbID" component={Detail} />
         </main>
-
+        
       </div>
-      <footer>
-        <div className="text-center bg-dark py-3 text-secondary">
-          <p>© 2019 Copyright</p>
-        </div>
-      </footer>
+      <Footer/>
     </Router>
   );
 }

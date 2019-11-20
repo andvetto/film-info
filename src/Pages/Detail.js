@@ -16,8 +16,9 @@ class Detail extends React.Component {
     componentDidMount(props){
 
         let imdbID = this.props.match.params.imdbID;
+        const API_KEY = "apikey=7e18b2af";
 
-        fetch(`https://www.omdbapi.com/?i=${imdbID}&apikey=7e18b2af`)
+        fetch(`https://www.omdbapi.com/?i=${imdbID}&${API_KEY}`)
             .then(response => {
                 console.log(response.status);
                 this.setState({ response: response }, () => console.log(this.state));
