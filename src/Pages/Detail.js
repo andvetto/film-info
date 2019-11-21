@@ -10,6 +10,7 @@ class Detail extends React.Component {
         super(props);
         this.state = {
             data: "",
+            risultato: [],
         };
     }  
 
@@ -33,21 +34,24 @@ class Detail extends React.Component {
                 }, () => console.log(this.state));
                 return data;
             }).then(film => {
-                fetch(`http://localhost:3004/posts?${film.Title}`)
-                .then(response => {
-                        console.log(response, "paperone");  
+                fetch(`http://localhost:3004/posts?title=${film.Title}`)
+                .then(risposta => {
+                        
+                        return risposta.json();  
                 })
+                .then(risultato => {
+                    
+                        this.setState({risultato: risultato}, () => console.log(this.state, "banana"));
+                        return risultato;
+                })
+                
+              
+                
             })
                 
                                         
             .catch(error => this.setState({ error: error }));
-        /*
-        fetch(`http://localhost:3004/posts?${this.state.data.Title}`)
-            .then(response => {
-                console.log(response);
-                
-            })
-        */
+
     }
 
 
@@ -69,11 +73,23 @@ class Detail extends React.Component {
                 }),
             headers: {"Content-Type" : "application/json"}
 
-        }).then(() => console.log("ho chiamato manda"))
+        })
+        //.then(() => console.log("ho chiamato manda"))
         
     }
 
     render(){
+        var bottone;
+        //var classe = this.state.risultato.length ? "gialla" : "bianca" ;
+        if(this.state.risultato.length===0){
+            bottone = (
+
+                <i className="fa fa-star" onClick={() => this.manda()} id="stellaBianca" aria-hidden="true"></i>
+            );
+        } else {
+            bottone = <i className="fa fa-star" id="stellaGialla" aria-hidden="true"></i>
+        }
+
         if(this.state.data){
             let film = this.state.data;
             return (
@@ -86,12 +102,10 @@ class Detail extends React.Component {
                     <p>Genre: {film.Genre}</p>
                     <p>Runtime: {film.Runtime}</p>
                     <p>Year: {film.Year}</p>
-                    <NavLink exact to="/" className="btn btn-primary">
+                    <NavLink exact to="/" className="btn btn-primary mx-2">
                         Go Back
                     </NavLink>
-                    <button onClick={() => this.manda()} className="btn btn-danger mx-2">
-                        Film Preferito
-                    </button>
+                    {bottone}
                 </div>
 
       
