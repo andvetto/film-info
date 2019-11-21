@@ -3,8 +3,6 @@ import React from 'react';
 
 function NavBar(props){
 
-
-        console.log(props)
         
         return(
             <nav className="navbar navbar-light bg-dark justify-content-center">
