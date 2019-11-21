@@ -13,10 +13,10 @@
     font-family: 'Vollkorn', serif;
 }
 
-#stellaGialla{
+.stellaGialla{
     color: yellow;
 }
 
-#stellaBianca:hover{
+.stellaBianca:hover{
    cursor: pointer;
 }

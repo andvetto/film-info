@@ -37,6 +37,51 @@
       "runtime": "127 min",
       "img": "https://m.media-amazon.com/images/M/MV5BMjM2MDgxMDg0Nl5BMl5BanBnXkFtZTgwNTM2OTM5NDE@._V1_SX300.jpg",
       "id": 4
+    },
+    {
+      "title": "Pippo Barzizza e Una Vita per la Musica",
+      "year": "2013",
+      "plot": "From the Pathè Baby 9.5 archive footage shot by Pippo Barzizza since 1928, this short film shows the Pippo's life with his wife Tatina, and his daughter Isa Barzizza. The title was written ...",
+      "genre": "Documentary, Short",
+      "actors": "N/A",
+      "director": "Renzo Barzizza",
+      "runtime": "N/A",
+      "img": "https://m.media-amazon.com/images/M/MV5BMDAxYjZlMzUtYWMyNC00MmE1LTkzMmUtZDE1MTZkN2I1NzEyXkEyXkFqcGdeQXVyMjA3NzAyMDM@._V1_SX300.jpg",
+      "id": 5
+    },
+    {
+      "title": "Superman",
+      "year": "1978",
+      "plot": "An alien orphan is sent from his dying planet to Earth, where he grows up to become his adoptive home's first and greatest superhero.",
+      "genre": "Action, Adventure, Drama, Sci-Fi",
+      "actors": "Marlon Brando, Gene Hackman, Christopher Reeve, Ned Beatty",
+      "director": "Richard Donner",
+      "runtime": "143 min",
+      "img": "https://m.media-amazon.com/images/M/MV5BMzA0YWMwMTUtMTVhNC00NjRkLWE2ZTgtOWEzNjJhYzNiMTlkXkEyXkFqcGdeQXVyNjc1NTYyMjg@._V1_SX300.jpg",
+      "id": 6
+    },
+    {
+      "title": "Pinocchio",
+      "year": "2002",
+      "plot": "Despite guidance from the Blue Fairy and the love of his father, a wooden puppet's curious spirit leads him into one wild adventure after another.",
+      "genre": "Comedy, Family, Fantasy",
+      "actors": "Roberto Benigni, Nicoletta Braschi, Mino Bellei, Carlo Giuffrè",
+      "director": "Roberto Benigni",
+      "runtime": "108 min",
+      "img": "https://m.media-amazon.com/images/M/MV5BOTZmM2E0OTItM2I5MC00MzRjLWI4M2EtNDAxYjU1MTQwZjE1XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg",
+      "id": 7
+    },
+    {
+      "title": "Pinocchio",
+      "year": "2002",
+      "plot": "Despite guidance from the Blue Fairy and the love of his father, a wooden puppet's curious spirit leads him into one wild adventure after another.",
+      "genre": "Comedy, Family, Fantasy",
+      "actors": "Roberto Benigni, Nicoletta Braschi, Mino Bellei, Carlo Giuffrè",
+      "director": "Roberto Benigni",
+      "runtime": "108 min",
+      "img": "https://m.media-amazon.com/images/M/MV5BOTZmM2E0OTItM2I5MC00MzRjLWI4M2EtNDAxYjU1MTQwZjE1XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg",
+      "imdbID": "tt0255477",
+      "id": 8
     }
   ],
   "comments": [

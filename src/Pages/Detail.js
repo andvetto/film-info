@@ -74,7 +74,7 @@ class Detail extends React.Component {
             headers: {"Content-Type" : "application/json"}
 
         })
-        //.then(() => console.log("ho chiamato manda"))
+        .then(() => this.setState({ risultato: [1, 2]} ));
         
     }
 
@@ -84,10 +84,10 @@ class Detail extends React.Component {
         if(this.state.risultato.length===0){
             bottone = (
 
-                <i className="fa fa-star" onClick={() => this.manda()} id="stellaBianca" aria-hidden="true"></i>
+                <i className="fa fa-star stellaBianca" onClick={() => this.manda()} aria-hidden="true"></i>
             );
         } else {
-            bottone = <i className="fa fa-star" id="stellaGialla" aria-hidden="true"></i>
+            bottone = <i className="fa fa-star stellaGialla" aria-hidden="true"></i>
         }
 
         if(this.state.data){
