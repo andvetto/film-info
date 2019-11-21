@@ -82,6 +82,17 @@
       "img": "https://m.media-amazon.com/images/M/MV5BOTZmM2E0OTItM2I5MC00MzRjLWI4M2EtNDAxYjU1MTQwZjE1XkEyXkFqcGdeQXVyMTQxNzMzNDI@._V1_SX300.jpg",
       "imdbID": "tt0255477",
       "id": 8
+    },
+    {
+      "title": "Jurassic Park III",
+      "year": "2001",
+      "plot": "A decidedly odd couple with ulterior motives convince Dr. Grant to go to Isla Sorna for a holiday, but their unexpected landing startles the island's new inhabitants.",
+      "genre": "Action, Adventure, Sci-Fi, Thriller",
+      "actors": "Sam Neill, William H. Macy, Téa Leoni, Alessandro Nivola",
+      "director": "Joe Johnston",
+      "runtime": "92 min",
+      "img": "https://m.media-amazon.com/images/M/MV5BZDMyZGJjOGItYjJkZC00MDVlLWE0Y2YtZGIwMDExYWE3MGQ3XkEyXkFqcGdeQXVyNDYyMDk5MTU@._V1_SX300.jpg",
+      "id": 9
     }
   ],
   "comments": [
