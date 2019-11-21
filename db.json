@@ -17,15 +17,114 @@
       "id": 2
     },
     {
-      "title": "Batman Begins",
-      "year": "2005",
-      "plot": "After training with his mentor, Batman begins his fight to free crime-ridden Gotham City from corruption.",
-      "genre": "Action, Adventure",
-      "actors": "Christian Bale, Michael Caine, Liam Neeson, Katie Holmes",
-      "director": "Christopher Nolan",
-      "runtime": "140 min",
-      "img": "https://m.media-amazon.com/images/M/MV5BZmUwNGU2ZmItMmRiNC00MjhlLTg5YWUtODMyNzkxODYzMmZlXkEyXkFqcGdeQXVyNTIzOTk5ODM@._V1_SX300.jpg",
+      "title": "Joker",
+      "year": "2019",
+      "plot": "In Gotham City, mentally-troubled comedian Arthur Fleck is disregarded and mistreated by society. He then embarks on a downward spiral of revolution and bloody crime. This path brings him face-to-face with his alter-ego: \"The Joker\".",
+      "genre": "Crime, Drama, Thriller",
+      "actors": "Joaquin Phoenix, Robert De Niro, Zazie Beetz, Frances Conroy",
+      "director": "Todd Phillips",
+      "runtime": "122 min",
+      "img": "https://m.media-amazon.com/images/M/MV5BNGVjNWI4ZGUtNzE0MS00YTJmLWE0ZDctN2ZiYTk2YmI3NTYyXkEyXkFqcGdeQXVyMTkxNjUyNQ@@._V1_SX300.jpg",
       "id": 3
+    },
+    {
+      "title": "Ad ovest di Paperino",
+      "year": "1981",
+      "plot": "Marta, a lonely woman, takes with her Augusto and Antonio to scour the whole city for a whole day, looking for something absurd: pigeons turning into men or she will die.",
+      "genre": "Comedy",
+      "actors": "Athina Cenci, Alessandro Benvenuti, Francesco Nuti, Giancattivi",
+      "director": "Alessandro Benvenuti",
+      "runtime": "102 min",
+      "img": "https://m.media-amazon.com/images/M/MV5BZTI2ZDc5ZjYtNzhlMC00NDJhLTlmZDctNjQyYWM2YjMyZDgwXkEyXkFqcGdeQXVyMzU0NzkwMDg@._V1_SX300.jpg",
+      "id": 4
+    },
+    {
+      "title": "Ad ovest di Paperino",
+      "year": "1981",
+      "plot": "Marta, a lonely woman, takes with her Augusto and Antonio to scour the whole city for a whole day, looking for something absurd: pigeons turning into men or she will die.",
+      "genre": "Comedy",
+      "actors": "Athina Cenci, Alessandro Benvenuti, Francesco Nuti, Giancattivi",
+      "director": "Alessandro Benvenuti",
+      "runtime": "102 min",
+      "img": "https://m.media-amazon.com/images/M/MV5BZTI2ZDc5ZjYtNzhlMC00NDJhLTlmZDctNjQyYWM2YjMyZDgwXkEyXkFqcGdeQXVyMzU0NzkwMDg@._V1_SX300.jpg",
+      "id": 5
+    },
+    {
+      "title": "Jurassic Park",
+      "year": "1993",
+      "plot": "A pragmatic Paleontologist visiting an almost complete theme park is tasked with protecting a couple of kids after a power failure causes the park's cloned dinosaurs to run loose.",
+      "genre": "Action, Adventure, Sci-Fi, Thriller",
+      "actors": "Sam Neill, Laura Dern, Jeff Goldblum, Richard Attenborough",
+      "director": "Steven Spielberg",
+      "runtime": "127 min",
+      "img": "https://m.media-amazon.com/images/M/MV5BMjM2MDgxMDg0Nl5BMl5BanBnXkFtZTgwNTM2OTM5NDE@._V1_SX300.jpg",
+      "id": 6
+    },
+    {
+      "title": "Jurassic Park",
+      "year": "1993",
+      "plot": "A pragmatic Paleontologist visiting an almost complete theme park is tasked with protecting a couple of kids after a power failure causes the park's cloned dinosaurs to run loose.",
+      "genre": "Action, Adventure, Sci-Fi, Thriller",
+      "actors": "Sam Neill, Laura Dern, Jeff Goldblum, Richard Attenborough",
+      "director": "Steven Spielberg",
+      "runtime": "127 min",
+      "img": "https://m.media-amazon.com/images/M/MV5BMjM2MDgxMDg0Nl5BMl5BanBnXkFtZTgwNTM2OTM5NDE@._V1_SX300.jpg",
+      "id": 7
+    },
+    {
+      "title": "E' ancora via col vento",
+      "year": "2015",
+      "plot": "Gentle parody of the movie \"Gone with the Wind\" that ironically on 'love and on the crisis of the 'modern man in relation to women. we are to the present day. Rhett, played by Stefano ...",
+      "genre": "Short, Comedy",
+      "actors": "Stefano Simondo, Angelo Amoretti",
+      "director": "Ivan Monti",
+      "runtime": "3 min",
+      "img": "https://m.media-amazon.com/images/M/MV5BNzQ5OThiOWQtNDVkZC00MGQ0LWE5OWQtMWZmODFjNjBhZWE3XkEyXkFqcGdeQXVyODUwMzQ1NjM@._V1_SX300.jpg",
+      "id": 8
+    },
+    {
+      "title": "E' ancora via col vento",
+      "year": "2015",
+      "plot": "Gentle parody of the movie \"Gone with the Wind\" that ironically on 'love and on the crisis of the 'modern man in relation to women. we are to the present day. Rhett, played by Stefano ...",
+      "genre": "Short, Comedy",
+      "actors": "Stefano Simondo, Angelo Amoretti",
+      "director": "Ivan Monti",
+      "runtime": "3 min",
+      "img": "https://m.media-amazon.com/images/M/MV5BNzQ5OThiOWQtNDVkZC00MGQ0LWE5OWQtMWZmODFjNjBhZWE3XkEyXkFqcGdeQXVyODUwMzQ1NjM@._V1_SX300.jpg",
+      "id": 9
+    },
+    {
+      "title": "Pippo Barzizza e Una Vita per la Musica",
+      "year": "2013",
+      "plot": "From the Pathè Baby 9.5 archive footage shot by Pippo Barzizza since 1928, this short film shows the Pippo's life with his wife Tatina, and his daughter Isa Barzizza. The title was written ...",
+      "genre": "Documentary, Short",
+      "actors": "N/A",
+      "director": "Renzo Barzizza",
+      "runtime": "N/A",
+      "img": "https://m.media-amazon.com/images/M/MV5BMDAxYjZlMzUtYWMyNC00MmE1LTkzMmUtZDE1MTZkN2I1NzEyXkEyXkFqcGdeQXVyMjA3NzAyMDM@._V1_SX300.jpg",
+      "id": 10
+    },
+    {
+      "title": "Game of Thrones",
+      "year": "2011–",
+      "plot": "Nine noble families fight for control over the mythical lands of Westeros, while an ancient enemy returns after being dormant for thousands of years.",
+      "genre": "Action, Adventure, Drama, Fantasy, Romance",
+      "actors": "Peter Dinklage, Lena Headey, Emilia Clarke, Kit Harington",
+      "director": "N/A",
+      "runtime": "57 min",
+      "img": "https://m.media-amazon.com/images/M/MV5BMjA5NzA5NjMwNl5BMl5BanBnXkFtZTgwNjg2OTk2NzM@._V1_SX300.jpg",
+      "id": 11
+    },
+    {
+      "title": "Pinocchio",
+      "year": "1940",
+      "plot": "A living puppet, with the help of a cricket as his conscience, must prove himself worthy to become a real boy.",
+      "genre": "Animation, Comedy, Family, Fantasy, Musical",
+      "actors": "Mel Blanc, Don Brodie, Stuart Buchanan, Walter Catlett",
+      "director": "Norman Ferguson, T. Hee, Wilfred Jackson, Jack Kinney, Hamilton Luske, Bill Roberts, Ben Sharpsteen",
+      "runtime": "88 min",
+      "img": "https://m.media-amazon.com/images/M/MV5BMTU4Mzk3ODIyOF5BMl5BanBnXkFtZTgwODgyNzk2NjE@._V1_SX300.jpg",
+      "id": 12
     }
   ],
   "comments": [

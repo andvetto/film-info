@@ -31,10 +31,26 @@ class Detail extends React.Component {
                     data: data,
                
                 }, () => console.log(this.state));
+                return data;
+            }).then(film => {
+                fetch(`http://localhost:3004/posts?${film.Title}`)
+                .then(response => {
+                        console.log(response, "paperone");  
+                })
             })
+                
+                                        
             .catch(error => this.setState({ error: error }));
+        /*
+        fetch(`http://localhost:3004/posts?${this.state.data.Title}`)
+            .then(response => {
+                console.log(response);
+                
+            })
+        */
     }
-    
+
+
    manda() {
 
        let film = this.state.data;
@@ -53,7 +69,7 @@ class Detail extends React.Component {
                 }),
             headers: {"Content-Type" : "application/json"}
 
-        })
+        }).then(() => console.log("ho chiamato manda"))
         
     }
 
@@ -73,7 +89,7 @@ class Detail extends React.Component {
                     <NavLink exact to="/" className="btn btn-primary">
                         Go Back
                     </NavLink>
-                    <button onClick={this.manda()} className="btn btn-danger mx-2">
+                    <button onClick={() => this.manda()} className="btn btn-danger mx-2">
                         Film Preferito
                     </button>
                 </div>

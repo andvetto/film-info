@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 class MoviePoster extends React.Component { 
 
     render(){
-        console.log(this.props, "topolino")
+       
         if(this.props.ricerca){
 
             if(this.props.ricerca.Search){
