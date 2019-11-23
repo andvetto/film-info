@@ -21,17 +21,17 @@ class Detail extends React.Component {
 
         fetch(`https://www.omdbapi.com/?i=${imdbID}&${API_KEY}`)
             .then(response => {
-                console.log(response.status);
-                this.setState({ response: response }, () => console.log(this.state));
+                
+                this.setState({ response: response });
                 return response.json();
             })
             .then(data => {
-                console.log("success", data);
+                
                 this.setState({
                     ajaxCompleted: true,
                     data: data,
                
-                }, () => console.log(this.state));
+                });
                 return data;
             }).then(film => {
                 fetch(`http://localhost:3004/posts?title=${film.Title}`)
@@ -41,7 +41,7 @@ class Detail extends React.Component {
                 })
                 .then(risultato => {
                     
-                        this.setState({risultato: risultato}, () => console.log(this.state, "banana"));
+                        this.setState({risultato: risultato});
                         return risultato;
                 })
                 
@@ -54,6 +54,19 @@ class Detail extends React.Component {
 
     }
 
+
+   cancella() {
+
+       let film = this.state.data;
+   
+        fetch(`http://localhost:3004/posts/${film.imdbID}`, {
+            method: "DELETE",
+            //headers: {"Content-Type" : "application/json"}
+
+        })
+        .then(() => this.setState({ risultato: []} ));
+        
+    }
 
    manda() {
 
@@ -70,6 +83,7 @@ class Detail extends React.Component {
                 "director" : `${film.Director}`,
                 "runtime" : `${film.Runtime}`,
                 "img" : `${film.Poster}`,
+                "id" : `${film.imdbID}`,
                 }),
             headers: {"Content-Type" : "application/json"}
 
@@ -80,14 +94,13 @@ class Detail extends React.Component {
 
     render(){
         var bottone;
+        
         //var classe = this.state.risultato.length ? "gialla" : "bianca" ;
         if(this.state.risultato.length===0){
-            bottone = (
+            bottone = <i className="fa fa-star stellaBianca" onClick={() => this.manda()} aria-hidden="true"></i>
 
-                <i className="fa fa-star stellaBianca" onClick={() => this.manda()} aria-hidden="true"></i>
-            );
         } else {
-            bottone = <i className="fa fa-star stellaGialla" aria-hidden="true"></i>
+            bottone = <i className="fa fa-star stellaGialla" onClick={() => this.cancella()} aria-hidden="true"></i>
         }
 
         if(this.state.data){
@@ -102,7 +115,7 @@ class Detail extends React.Component {
                     <p>Genre: {film.Genre}</p>
                     <p>Runtime: {film.Runtime}</p>
                     <p>Year: {film.Year}</p>
-                    <NavLink exact to="/" className="btn btn-primary mx-2">
+                    <NavLink exact to={ `/${film.Title.split(" ")[0]}` } className="btn btn-primary mx-2">
                         Go Back
                     </NavLink>
                     {bottone}

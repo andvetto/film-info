@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 class MoviePoster extends React.Component { 
 
     render(){
-       
+    
         if(this.props.ricerca){
 
             if(this.props.ricerca.Search){
@@ -25,7 +25,7 @@ class MoviePoster extends React.Component {
                                 <div className="card-body text-dark">
                                     <h5 className="card-title">{film.Title}</h5>
                                     <p className="card-text">{film.Year}</p>
-                                    <NavLink exact to={ `/${film.imdbID}` } className="btn btn-primary">
+                                    <NavLink exact to={ `/detail/${film.imdbID}` } className="btn btn-primary">
                                         Go to detail
                                     </NavLink>
                                 </div>

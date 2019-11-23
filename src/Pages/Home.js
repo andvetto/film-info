@@ -1,7 +1,7 @@
 
 import React from 'react';
 import MoviePoster from '../Components/MoviePoster';
-import NavBar from '../Components/NavBar';
+import SearchBar from '../Components/SearchBar';
 
 
 class Home extends React.Component {
@@ -9,13 +9,18 @@ class Home extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: '',
+            value: this.props.match.params.titolo || ""
         };
     
         this.handleChange = this.handleChange.bind(this);
-        
     }
-    
+
+    componentDidMount(){
+        
+        //console.log(this.state);
+        this.handleClick();
+    }
+
     handleChange(event) {
         this.setState({value: event.target.value});
     }
@@ -23,20 +28,19 @@ class Home extends React.Component {
    handleClick(){
         let value = this.state.value;
         const API_KEY = "apikey=7e18b2af";
-        console.log(value,"paperino");
+        console.log(this.state);
         if(value===this.state.value){
         fetch(`https://www.omdbapi.com/?s=${value}&${API_KEY}`)
-            .then(response => {
-                console.log(response.status);
-                this.setState({ response: response, value: value }, () => console.log(this.state));
+            .then(response => {             
+                this.setState({ response: response, value: value });
                 return response.json();
             })
             .then(data => {
-                console.log("success", data);
+                
                 this.setState({
                     data: data,
                
-                }, () => console.log(this.state));
+                });
             })
             .catch(error => this.setState({ error: error }));
         }       
@@ -46,7 +50,7 @@ class Home extends React.Component {
         
         return(
             <>
-            <NavBar onClick={() => this.handleClick()} onChange={event => this.handleChange(event)} />
+            <SearchBar onClick={() => this.handleClick()} onChange={event => this.handleChange(event)} default={this.state.value} />
             <div className="row py-3" id="showResults" >
                 <MoviePoster ricerca={this.state.data} error={this.state.error} />
             </div>

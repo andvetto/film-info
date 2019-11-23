@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 
 import './App.css';
+import Favorites from './Pages/Favorites';
 
 function App() {
 
@@ -22,11 +23,13 @@ function App() {
         <h1 id="name" className="py-3">Film Information</h1>
         <main>
           <Route exact path="/" component={Home} />
-          <Route exact path="/:imdbID" component={Detail} />
+          <Route exact path="/:titolo" component={Home} />
+          <Route exact path="/detail/:imdbID" component={Detail} />
+          <Route exact path="/favorites/list" component={Favorites} />
         </main>
-        
+        <Footer/>
       </div>
-      <Footer/>
+      
     </Router>
   );
 }
