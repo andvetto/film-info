@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom';
 function SearchBar(props){
 
         return(
+            
             <nav className="navbar navbar-light bg-dark justify-content-center">
                 <NavLink exact to={ "/favorites/list" } className="btn btn-block btn-outline-warning mx-2">
                     Favourites

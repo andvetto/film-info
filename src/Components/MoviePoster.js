@@ -46,7 +46,7 @@ class MoviePoster extends React.Component {
         
         return (
             <div className="container-fluid text-center">
-                <h3>Ricerca un film o una serie tv inserento una parola del titolo</h3>
+                <h3>Ricerca un film o una serie tv inserendo una parola del titolo</h3>
             </div>
         )
   
