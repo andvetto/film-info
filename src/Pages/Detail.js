@@ -34,19 +34,20 @@ class Detail extends React.Component {
                 });
                 return data;
             }).then(film => {
-                fetch(`http://localhost:3004/posts?title=${film.Title}`)
+                //fetch(`http://localhost:3004/posts?title=${film.Title}`)
+                fetch(`https://film-info-35efc.firebaseio.com/favorite/films/${film.imdbID}.json`)
                 .then(risposta => {
                         
                         return risposta.json();  
                 })
-                .then(risultato => {
-                    
-                        this.setState({risultato: risultato});
-                        return risultato;
-                })
-                
-              
-                
+                .then((risposta) => {
+                    if(risposta){
+                        this.setState({ risultato: [1,2]})
+                    } else{
+                        this.setState({ risultato: []})
+                    }
+                });
+                               
             })
                 
                                         
@@ -59,7 +60,7 @@ class Detail extends React.Component {
 
        let film = this.state.data;
    
-        fetch(`http://localhost:3004/posts/${film.imdbID}`, {
+        fetch(`https://film-info-35efc.firebaseio.com/favorite/films/${film.imdbID}.json`, {
             method: "DELETE",
             //headers: {"Content-Type" : "application/json"}
 
@@ -72,8 +73,9 @@ class Detail extends React.Component {
 
        let film = this.state.data;
    
-        fetch("http://localhost:3004/posts", {
-            method: "POST",
+    //    fetch("http://localhost:3004/posts", {
+        fetch(`https://film-info-35efc.firebaseio.com/favorite/films/${film.imdbID}.json`, {
+            method: "PUT",
             body: JSON.stringify({ 
                 "title" : `${film.Title}`,
                 "year" : `${film.Year}`,
@@ -88,13 +90,13 @@ class Detail extends React.Component {
             headers: {"Content-Type" : "application/json"}
 
         })
-        .then(() => this.setState({ risultato: [1, 2]} ));
-        
+        .then(this.setState({ risultato: [1,2]} ))
+        //.then(console.log(this.state.risultato, "pippo"))
     }
 
     render(){
         var bottone;
-        
+        //console.log(this.state.risultato)
         //var classe = this.state.risultato.length ? "gialla" : "bianca" ;
         if(this.state.risultato.length===0){
             bottone = <i className="fa fa-star stellaBianca" onClick={() => this.manda()} aria-hidden="true"></i>

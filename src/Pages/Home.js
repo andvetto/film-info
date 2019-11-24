@@ -28,7 +28,7 @@ class Home extends React.Component {
    handleClick(){
         let value = this.state.value;
         const API_KEY = "apikey=7e18b2af";
-        console.log(this.state);
+        //console.log(this.state);
         if(value===this.state.value){
         fetch(`https://www.omdbapi.com/?s=${value}&${API_KEY}`)
             .then(response => {             
