@@ -9,7 +9,8 @@ class Home extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: this.props.match.params.titolo || ""
+            value: this.props.match.params.titolo || "",
+            disabled: true
         };
     
         this.handleChange = this.handleChange.bind(this);
@@ -22,7 +23,16 @@ class Home extends React.Component {
     }
 
     handleChange(event) {
+      
+
         this.setState({value: event.target.value});
+        if(event.target.value.length > 2){
+            this.setState({disabled: false})
+        }
+        else if(event.target.value.length <= 2){
+            this.setState({disabled: true})
+        }
+   
     }
 
    handleClick(){
@@ -47,12 +57,14 @@ class Home extends React.Component {
     }
     
     render() {
-        
+        //console.log(this.state);
+
+
         return(
             <>
-            <SearchBar onClick={() => this.handleClick()} onChange={event => this.handleChange(event)} default={this.state.value} />
+            <SearchBar onClick={() => this.handleClick()} onChange={event => this.handleChange(event)} default={this.state.value} disabled={this.state.disabled}/>
             <div className="row py-3" id="showResults" >
-                <MoviePoster ricerca={this.state.data} error={this.state.error} />
+                <MoviePoster ricerca={this.state.data || "default"} error={this.state.error} />
             </div>
             </>
         )

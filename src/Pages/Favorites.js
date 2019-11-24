@@ -58,7 +58,14 @@ export default class Favorites extends React.Component {
                 </>
             )
         }
-         return <BackButton/>
+         return (
+            <> 
+            <BackButton/>
+            <div className="container-fluid text-center">
+                <h3>Non hai inserito alcun film tra i preferiti!</h3>
+            </div>
+            </>
+         )
     } 
    
   

@@ -7,8 +7,7 @@ class MoviePoster extends React.Component {
 
     render(){
     
-        if(this.props.ricerca){
-
+        
             if(this.props.ricerca.Search){
                 var films = this.props.ricerca.Search;
                 
@@ -36,15 +35,20 @@ class MoviePoster extends React.Component {
                 </>
                 )
             }
-
+            if(this.props.ricerca.Error === "Movie not found!")
             return (
                 <div className="container-fluid text-center">
-                    <p>Il film cercato non è presente nel nostro database</p>
+                    <h3>Il film cercato non è presente nel nostro database!</h3>
                 </div>
             )
 
-        }
-            return null;
+        
+        
+        return (
+            <div className="container-fluid text-center">
+                <h3>Ricerca un film o una serie tv inserento una parola del titolo</h3>
+            </div>
+        )
   
     }
 }
