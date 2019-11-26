@@ -13,7 +13,9 @@ class Detail extends React.Component {
         this.state = {
             data: "",
             risultato: [],
-            user:Auth.getUser(),
+            user: Auth.getUser(),
+            token: Auth.getToken(),
+            
         };
     }  
 
@@ -60,8 +62,13 @@ class Detail extends React.Component {
 
    cancella() {
         
+        let film = this.state.data;
+        let token = this.state.token;
         
-       let film = this.state.data;
+        if(token){
+            axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
+        }
+       
    
         //fetch(`https://film-info-35efc.firebaseio.com/favorite/films/${film.imdbID}.json`, 
         axios.delete(`http://localhost:8000/favorites/${this.state.user.id}/delete/${film.imdbID}`)
@@ -75,6 +82,10 @@ class Detail extends React.Component {
    
     //    fetch("http://localhost:3004/posts", {
     //    fetch(`https://film-info-35efc.firebaseio.com/favorite/films/${film.imdbID}.json`,
+        let token = this.state.token;
+        if(token){
+            axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
+        }
         axios.post(`http://localhost:8000/favorites`, 
  
         {
@@ -97,15 +108,19 @@ class Detail extends React.Component {
 
     render(){
         var bottone;
-        console.log(this.state.risultato, "plutp")
+        //console.log(this.state.token)
+        //console.log(this.state.risultato, "pluto")
         //var classe = this.state.risultato.length ? "gialla" : "bianca" ;
+        if(this.state.user){
+
+        
         if(this.state.risultato.length===0){
             bottone = <i className="fa fa-star stellaBianca" onClick={() => this.manda()} aria-hidden="true"></i>
 
         } else {
             bottone = <i className="fa fa-star stellaGialla" onClick={() => this.cancella()} aria-hidden="true"></i>
         }
-
+    }
         if(this.state.data){
             let film = this.state.data;
             return (

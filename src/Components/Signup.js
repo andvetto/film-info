@@ -1,17 +1,25 @@
 
 
-import React, {useState, useEffect} from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import Auth from '../Auth/auth';
 
-const Signup = () => {
+const Signup = (pars) => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [username, setUsername] = useState('');
+    const [name, setName] = useState('');
 
     const signupUser = (e) => {
         e.preventDefault()
-        alert(email)
+        
+        Auth.signup(email, name, password)
+            .then ( payload => {
+                
+                pars.history.push('/');
+                
+            });
+
     }
 
 
@@ -19,7 +27,7 @@ const Signup = () => {
         e.preventDefault()
         setEmail('');
         setPassword('');
-        setUsername('');
+        setName('');
     }
 
     return(
@@ -30,9 +38,9 @@ const Signup = () => {
             <form className="form col-sm-6 offset-sm-3 col-md-4 offset-md-4" onSubmit={signupUser}>
 
                 <div className="form-group">
-                    <label htmlFor="username" className="control-label">Username</label>
-                    <input required name="username" id="username" value={username} className="form-field form-control"
-                        onChange={e=>setUsername(e.target.value)} />
+                    <label htmlFor="name" className="control-label">Username</label>
+                    <input required name="name" id="name" value={name} className="form-field form-control"
+                        onChange={e=>setName(e.target.value)} />
                 </div>
 
                 <div className="form-group">

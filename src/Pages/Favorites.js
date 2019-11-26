@@ -13,7 +13,8 @@ export default class Favorites extends React.Component {
         this.state = {
             response: "",
             films:[],
-            user:Auth.getUser(),
+            user: Auth.getUser(),
+            token: Auth.getToken(),
         };
         
     } 
@@ -23,6 +24,12 @@ export default class Favorites extends React.Component {
     componentDidMount() {
     //    fetch(API_URL + '/posts')
     //    fetch(`https://film-info-35efc.firebaseio.com/favorite.json`)
+    let token = this.state.token;
+        
+    if(token){
+        axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
+    }
+
     axios.get(`http://localhost:8000/favorites/list/${this.state.user.id}`)
         .then(response => this.setState({ films: response.data }))
         .catch(error => this.setState({ error: error }));
@@ -36,6 +43,9 @@ export default class Favorites extends React.Component {
             return (
                 <>
                 <BackButton/>
+                <div className="container-fluid text-center">
+                    <h3>I preferiti di {this.state.user.name}</h3>
+                </div>
                 <div className="row">
                     {films.map( film => 
 

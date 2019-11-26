@@ -4,6 +4,7 @@ const AUTH_URL = "http://127.0.0.1:8000/api/auth/"
 
 function Auth(){
 
+
     const addAxiosToken = () => {
         const token = getToken();
         if(token){
@@ -21,18 +22,26 @@ function Auth(){
                     password
                 }
             );
+            
+            const data = result['data'];
+            if(!data || !data['access_token']){
+                return Promise.rejected('Invalid server response');
+            }
 
-            console.log(result.data);
+
+            //console.log(result.data);
+ 
             localStorage.setItem('auth', JSON.stringify(result.data));
 
             return result.data;
         } catch (e){
-            console.log(e)
+            //console.log(e)
             return e;
         }
     };
 
     const getToken = () => {
+
         const auth = JSON.parse(localStorage.getItem('auth'));
         if(auth) {
             return auth.access_token
@@ -41,6 +50,7 @@ function Auth(){
     };
 
     const getUser = () => {
+
         const auth = JSON.parse(localStorage.getItem('auth'));
         if(auth) {
             return auth.user
@@ -48,14 +58,43 @@ function Auth(){
         return null
     };
     
-    const signup = () => {};
+    const signup = async (email, name, password) => {
+
+        try{
+            const result = await axios.post( AUTH_URL + 'signup',
+                {
+                    email,
+                    name,
+                    password,
+
+                }
+            );
+
+            const data = result['data'];
+            if(!data || !data['access_token']){
+                return Promise.rejected('Invalid server response');
+            }
+            
+            //console.log(result.data);
+
+            localStorage.setItem('auth', JSON.stringify(result.data));
+
+            return result.data;
+        } catch (e){
+            //console.log(e)
+            return e;
+        }
+
+
+    };
 
     const logout = async () => {
         addAxiosToken();
         try{
+            
             const result = await axios.post(AUTH_URL + 'logout')
-
             localStorage.removeItem('auth');
+            
             return result;
         } catch(e){
             console.log(e)
@@ -69,7 +108,9 @@ function Auth(){
         getUser,
         login,
         signup,
-        logout
+        logout,
+        getToken,
+
     }
 
 }
