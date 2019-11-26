@@ -2,6 +2,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import IsLoading from '../Components/IsLoading';
+import Auth from '../Auth/auth';
+const axios = require('axios');
 
 class Detail extends React.Component { 
 
@@ -11,6 +13,7 @@ class Detail extends React.Component {
         this.state = {
             data: "",
             risultato: [],
+            user:Auth.getUser(),
         };
     }  
 
@@ -18,6 +21,7 @@ class Detail extends React.Component {
 
         let imdbID = this.props.match.params.imdbID;
         const API_KEY = "apikey=7e18b2af";
+        
 
         fetch(`https://www.omdbapi.com/?i=${imdbID}&${API_KEY}`)
             .then(response => {
@@ -35,17 +39,15 @@ class Detail extends React.Component {
                 return data;
             }).then(film => {
                 //fetch(`http://localhost:3004/posts?title=${film.Title}`)
-                fetch(`https://film-info-35efc.firebaseio.com/favorite/films/${film.imdbID}.json`)
+                //fetch(`https://film-info-35efc.firebaseio.com/favorite/films/${film.imdbID}.json`)
+                axios.get(`http://localhost:8000/favorites/${this.state.user.id}/detail/${film.imdbID}`)
                 .then(risposta => {
                         
-                        return risposta.json();  
-                })
-                .then((risposta) => {
-                    if(risposta){
-                        this.setState({ risultato: [1,2]})
+                    if(risposta.data.length!==0){
+                        this.setState({ risultato: [risposta.data[0].title]})
                     } else{
                         this.setState({ risultato: []})
-                    }
+                    } 
                 });
                                
             })
@@ -57,14 +59,12 @@ class Detail extends React.Component {
 
 
    cancella() {
-
+        
+        
        let film = this.state.data;
    
-        fetch(`https://film-info-35efc.firebaseio.com/favorite/films/${film.imdbID}.json`, {
-            method: "DELETE",
-            //headers: {"Content-Type" : "application/json"}
-
-        })
+        //fetch(`https://film-info-35efc.firebaseio.com/favorite/films/${film.imdbID}.json`, 
+        axios.delete(`http://localhost:8000/favorites/${this.state.user.id}/delete/${film.imdbID}`)
         .then(() => this.setState({ risultato: []} ));
         
     }
@@ -74,21 +74,22 @@ class Detail extends React.Component {
        let film = this.state.data;
    
     //    fetch("http://localhost:3004/posts", {
-        fetch(`https://film-info-35efc.firebaseio.com/favorite/films/${film.imdbID}.json`, {
-            method: "PUT",
-            body: JSON.stringify({ 
-                "title" : `${film.Title}`,
-                "year" : `${film.Year}`,
-                "plot" : `${film.Plot}`,
-                "genre" : `${film.Genre}`,
-                "actors" : `${film.Actors}`,
-                "director" : `${film.Director}`,
-                "runtime" : `${film.Runtime}`,
-                "img" : `${film.Poster}`,
-                "id" : `${film.imdbID}`,
-                }),
-            headers: {"Content-Type" : "application/json"}
-
+    //    fetch(`https://film-info-35efc.firebaseio.com/favorite/films/${film.imdbID}.json`,
+        axios.post(`http://localhost:8000/favorites`, 
+ 
+        {
+            
+            "user_id" : `${this.state.user.id}`, 
+            "title" : `${film.Title}`,
+            "year" : `${film.Year}`,
+            "plot" : `${film.Plot}`,
+            "genre" : `${film.Genre}`,
+            "actors" : `${film.Actors}`,
+            "director" : `${film.Director}`,
+            "runtime" : `${film.Runtime}`,
+            "img" : `${film.Poster}`,
+            "imdbID" : `${film.imdbID}`,
+                
         })
         .then(this.setState({ risultato: [1,2]} ))
         //.then(console.log(this.state.risultato, "pippo"))
@@ -96,7 +97,7 @@ class Detail extends React.Component {
 
     render(){
         var bottone;
-        //console.log(this.state.risultato)
+        console.log(this.state.risultato, "plutp")
         //var classe = this.state.risultato.length ? "gialla" : "bianca" ;
         if(this.state.risultato.length===0){
             bottone = <i className="fa fa-star stellaBianca" onClick={() => this.manda()} aria-hidden="true"></i>
