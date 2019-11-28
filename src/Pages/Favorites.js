@@ -35,13 +35,23 @@ export default class Favorites extends React.Component {
     }
     trackPromise(
     axios.get(`${API_BACKEND}/favorites/list/${this.state.user.id}`)
-        .then(response => this.setState({ films: response.data }))
+        .then(
+            
+            response => {
+                //console.log(response);
+                if (response.data!==[]){
+                    return this.setState({ films: response.data })
+                }
+                this.setState({ films: "error" })
+            }
+            )
         .catch(error => this.setState({ error: error })));
+        
     }
 
     render(){
-        console.log(this.state.films, "pippo")
-        if(this.state.films){
+        //console.log(this.state.films, "pippo")
+        if(this.state.films!=="no-favorites"){
             var films = this.state.films;
             
             return (
@@ -85,6 +95,7 @@ export default class Favorites extends React.Component {
                 <h3 className="mb-3">Non hai inserito alcun film tra i preferiti!</h3>
                 <BackButton/>
             </div>
+            <IsLoading color="#ffc107"/>
             </>
          )
     } 
