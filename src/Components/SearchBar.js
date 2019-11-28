@@ -6,7 +6,7 @@ import Auth from '../Auth/auth';
 function SearchBar(props){
 
         const user = Auth.getUser();
-        console.log(user)
+        //console.log(user)
         return(
             
             <nav className="navbar navbar-light bg-dark justify-content-center">

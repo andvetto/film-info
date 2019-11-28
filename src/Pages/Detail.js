@@ -1,9 +1,12 @@
-
+import Config from '../config/config';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import IsLoading from '../Components/IsLoading';
 import Auth from '../Auth/auth';
 const axios = require('axios');
+
+const API_BACKEND = Config.API_BACKEND;
+
 
 class Detail extends React.Component { 
 
@@ -18,6 +21,8 @@ class Detail extends React.Component {
             
         };
     }  
+
+    
 
     componentDidMount(props){
 
@@ -42,7 +47,7 @@ class Detail extends React.Component {
             }).then(film => {
                 //fetch(`http://localhost:3004/posts?title=${film.Title}`)
                 //fetch(`https://film-info-35efc.firebaseio.com/favorite/films/${film.imdbID}.json`)
-                axios.get(`http://localhost:8000/favorites/${this.state.user.id}/detail/${film.imdbID}`)
+                axios.get(`${API_BACKEND}/favorites/${this.state.user.id}/detail/${film.imdbID}`)
                 .then(risposta => {
                         
                     if(risposta.data.length!==0){
@@ -71,23 +76,21 @@ class Detail extends React.Component {
        
    
         //fetch(`https://film-info-35efc.firebaseio.com/favorite/films/${film.imdbID}.json`, 
-        axios.delete(`http://localhost:8000/favorites/${this.state.user.id}/delete/${film.imdbID}`)
+        axios.delete(`${API_BACKEND}/favorites/${this.state.user.id}/delete/${film.imdbID}`)
         .then(() => this.setState({ risultato: []} ));
         
     }
 
-   manda() {
+    manda() {
 
-       let film = this.state.data;
-   
-    //    fetch("http://localhost:3004/posts", {
-    //    fetch(`https://film-info-35efc.firebaseio.com/favorite/films/${film.imdbID}.json`,
+        let film = this.state.data;
+
         let token = this.state.token;
         if(token){
             axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
         }
-        axios.post(`http://localhost:8000/favorites`, 
- 
+        axios.post(`${API_BACKEND}/favorites`, 
+
         {
             
             "user_id" : `${this.state.user.id}`, 
@@ -126,7 +129,7 @@ class Detail extends React.Component {
             return (
                 <div className="container text-center border border-secondary py-3">
                     <h2>{film.Title}</h2>
-                    <img src={film.Poster} className="my-3" alt={film.Title} />
+                    <img src={film.Poster!=="N/A"? film.Poster : "https://via.placeholder.com/300x400"} className="my-3" alt={film.Title} />
                     <p>{film.Plot}</p>
                     <p>Director: {film.Director}</p>
                     <p>Actors: {film.Actors}</p>
@@ -138,8 +141,6 @@ class Detail extends React.Component {
                     </NavLink>
                     {bottone}
                 </div>
-
-      
               
 
             )

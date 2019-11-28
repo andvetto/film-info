@@ -1,9 +1,10 @@
+import Config from '../config/config';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import BackButton from '../Components/BackButton';
 import Auth from '../Auth/auth';
 const axios = require('axios');
-
+const API_BACKEND = Config.API_BACKEND;
 //const API_URL = 'http://localhost:3004'
 
 export default class Favorites extends React.Component { 
@@ -30,7 +31,7 @@ export default class Favorites extends React.Component {
         axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
     }
 
-    axios.get(`http://localhost:8000/favorites/list/${this.state.user.id}`)
+    axios.get(`${API_BACKEND}/favorites/list/${this.state.user.id}`)
         .then(response => this.setState({ films: response.data }))
         .catch(error => this.setState({ error: error }));
     }
@@ -46,7 +47,7 @@ export default class Favorites extends React.Component {
                 <div className="container-fluid text-center">
                     <h3>I preferiti di {this.state.user.name}</h3>
                 </div>
-                <div className="row">
+                <div className="row justify-content-center">
                     {films.map( film => 
 
 
@@ -54,7 +55,7 @@ export default class Favorites extends React.Component {
                         <div className="col-lg-3 col-md-4 col-sm-6 py-2" key={film.id} >
 
                             <div className="card" >
-                                <img src={film.img} alt={film.title} />
+                                <img src={film.img!=="N/A"? film.img : "https://via.placeholder.com/300x400"} alt={film.title} />
                                 <div className="card-body text-dark">
                                     <h5 className="card-title">{film.title}</h5>
                                     <p className="card-text">{film.year}</p>
@@ -65,7 +66,7 @@ export default class Favorites extends React.Component {
                             </div>
                         </div>
                     ))}
-
+                    
                 
                 </div>
                 </>

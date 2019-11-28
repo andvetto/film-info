@@ -1,6 +1,7 @@
+import Config from '../config/config';
 import axios from 'axios';
 
-const AUTH_URL = "http://127.0.0.1:8000/api/auth/"
+const AUTH_URL = Config.AUTH_URL;
 
 function Auth(){
 
@@ -97,7 +98,7 @@ function Auth(){
             
             return result;
         } catch(e){
-            console.log(e)
+            //console.log(e)
             return e;
         }
 

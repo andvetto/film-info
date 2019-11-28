@@ -31,11 +31,11 @@ const Signup = (pars) => {
     }
 
     return(
-        
-        
-        <div className="container-fluid text-center">
-            <h2 className=" mb-3">Signup</h2>
-            <form className="form col-sm-6 offset-sm-3 col-md-4 offset-md-4" onSubmit={signupUser}>
+        <>
+        <h2 className=" mb-3">Signup</h2>
+        <div className="row justify-content-center">
+            
+            <form className="form col-sm-6 col-md-4" onSubmit={signupUser}>
 
                 <div className="form-group">
                     <label htmlFor="name" className="control-label">Username</label>
@@ -58,7 +58,7 @@ const Signup = (pars) => {
 
                 <div className="form-group">
                     <button className="btn btn-success">Signup</button>
-                    <NavLink exact to="/" className="btn btn-primary mx-2">
+                    <NavLink exact to="/" className="btn btn-primary mx-2 my-2">
                         Go Back
                     </NavLink>
                     <button className="btn btn-danger" onClick={e=>resetForm(e)}>Reset</button>
@@ -66,6 +66,7 @@ const Signup = (pars) => {
 
             </form>
         </div>
+        </>
     );
 
 }

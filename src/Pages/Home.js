@@ -57,13 +57,11 @@ class Home extends React.Component {
     }
     
     render() {
-        //console.log(this.state);
-
 
         return(
             <>
             <SearchBar onClick={() => this.handleClick()} onChange={event => this.handleChange(event)} default={this.state.value} disabled={this.state.disabled}/>
-            <div className="row py-3" id="showResults" >
+            <div className="row py-3 justify-content-center" id="showResults" >
                 <MoviePoster ricerca={this.state.data || "default"} error={this.state.error} />
             </div>
             </>
