@@ -151,7 +151,7 @@ findLongestWord(str) {
             return (
                 <div className="container text-center border border-secondary py-3">
                     <h2>{film.Title}</h2>
-                    <img src={film.Poster!=="N/A"? film.Poster : "https://via.placeholder.com/300x400"} className="my-3" alt={film.Title} />
+                    <img src={film.Poster!=="N/A"? film.Poster : "https://via.placeholder.com/300x410"} className="my-3" alt={film.Title} />
                     <p>{film.Plot}</p>
                     <p>Director: {film.Director}</p>
                     <p>Actors: {film.Actors}</p>

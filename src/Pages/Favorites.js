@@ -79,7 +79,7 @@ export default class Favorites extends React.Component {
                         <div className="col-lg-3 col-md-4 col-sm-6 py-2" key={film.id} >
 
                             <div className="card" >
-                                <img src={film.img!=="N/A"? film.img : "https://via.placeholder.com/300x400"} alt={film.title} />
+                                <img src={film.img!=="N/A"? film.img : "https://via.placeholder.com/300x410"} alt={film.title} />
                                 <div className="card-body text-dark">
                                     <h5 className="card-title">{film.title}</h5>
                                     <p className="card-text">{film.year}</p>
