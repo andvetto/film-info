@@ -3,6 +3,8 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import Auth from '../Auth/auth';
+import IsLoading from './IsLoading';
+import { trackPromise } from 'react-promise-tracker';
 
 const Signup = (pars) => {
 
@@ -12,13 +14,13 @@ const Signup = (pars) => {
 
     const signupUser = (e) => {
         e.preventDefault()
-        
+        trackPromise(
         Auth.signup(email, name, password)
             .then ( payload => {
                 
                 pars.history.push('/');
                 
-            });
+            }));
 
     }
 
@@ -65,6 +67,7 @@ const Signup = (pars) => {
                 </div>
 
             </form>
+            <IsLoading color="#2BAD60"/>
         </div>
         </>
     );

@@ -2,6 +2,7 @@ import Config from '../config/config';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import IsLoading from '../Components/IsLoading';
+import { trackPromise } from 'react-promise-tracker';
 import Auth from '../Auth/auth';
 const axios = require('axios');
 
@@ -29,7 +30,7 @@ class Detail extends React.Component {
         let imdbID = this.props.match.params.imdbID;
         const API_KEY = "apikey=7e18b2af";
         
-
+        trackPromise(
         fetch(`https://www.omdbapi.com/?i=${imdbID}&${API_KEY}`)
             .then(response => {
                 
@@ -57,7 +58,7 @@ class Detail extends React.Component {
                     } 
                 });
                                
-            })
+            }))
                 
                                         
             .catch(error => this.setState({ error: error }));
@@ -149,7 +150,7 @@ class Detail extends React.Component {
             let error = this.state.error;
             return <p>{error}</p>
         }
-        return <IsLoading/>
+        return <IsLoading color="#007bff"/>
     }
 }
 export default Detail;

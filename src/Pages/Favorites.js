@@ -3,6 +3,9 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import BackButton from '../Components/BackButton';
 import Auth from '../Auth/auth';
+import IsLoading from '../Components/IsLoading';
+import { trackPromise } from 'react-promise-tracker';
+
 const axios = require('axios');
 const API_BACKEND = Config.API_BACKEND;
 //const API_URL = 'http://localhost:3004'
@@ -30,23 +33,26 @@ export default class Favorites extends React.Component {
     if(token){
         axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
     }
-
+    trackPromise(
     axios.get(`${API_BACKEND}/favorites/list/${this.state.user.id}`)
         .then(response => this.setState({ films: response.data }))
-        .catch(error => this.setState({ error: error }));
+        .catch(error => this.setState({ error: error })));
     }
 
     render(){
-        //console.log(this.state.films, "pippo")
+        console.log(this.state.films, "pippo")
         if(this.state.films){
             var films = this.state.films;
             
             return (
                 <>
-                <BackButton/>
-                <div className="container-fluid text-center">
-                    <h3>I preferiti di {this.state.user.name}</h3>
+                
+                <div className="container-fluid text-center mb-2">
+                    <h3 className="mb-3">I preferiti di {this.state.user.name}</h3>
+                    <BackButton/>
                 </div>
+                
+                <IsLoading color="#ffc107"/>
                 <div className="row justify-content-center">
                     {films.map( film => 
 
@@ -74,9 +80,10 @@ export default class Favorites extends React.Component {
         }
          return (
             <> 
-            <BackButton/>
-            <div className="container-fluid text-center">
-                <h3>Non hai inserito alcun film tra i preferiti!</h3>
+            
+            <div className="container-fluid text-center mb-2">
+                <h3 className="mb-3">Non hai inserito alcun film tra i preferiti!</h3>
+                <BackButton/>
             </div>
             </>
          )

@@ -1,10 +1,28 @@
 import React from 'react';
+import { usePromiseTracker } from "react-promise-tracker";
+import Loader from 'react-loader-spinner';
 
 
-const IsLoading = () => (
-    <div className="container-fluid text-center">
-        <img src="https://i.giphy.com/media/17mNCcKU1mJlrbXodo/giphy.webp" alt="loading" title="loading"/>
-    </div>
-);
+
+
+const IsLoading = props => {
+    
+    const { promiseInProgress } = usePromiseTracker();
+    
+    return (
+        promiseInProgress && 
+            <div
+                style={{
+                    width: "100%",
+                    height: "100",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center"
+                }}
+            >
+                <Loader type="ThreeDots" color={props.color || "#fff"} height={100} width={100} />
+            </div>
+      );  
+    }
 
 export default IsLoading;

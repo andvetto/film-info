@@ -2,6 +2,8 @@
 import React from 'react';
 import MoviePoster from '../Components/MoviePoster';
 import SearchBar from '../Components/SearchBar';
+import IsLoading from '../Components/IsLoading';
+import { trackPromise } from 'react-promise-tracker';
 
 
 class Home extends React.Component {
@@ -40,6 +42,7 @@ class Home extends React.Component {
         const API_KEY = "apikey=7e18b2af";
         //console.log(this.state);
         if(value===this.state.value){
+        trackPromise(
         fetch(`https://www.omdbapi.com/?s=${value}&${API_KEY}`)
             .then(response => {             
                 this.setState({ response: response, value: value });
@@ -51,7 +54,7 @@ class Home extends React.Component {
                     data: data,
                
                 });
-            })
+            }))
             .catch(error => this.setState({ error: error }));
         }       
     }
@@ -63,6 +66,7 @@ class Home extends React.Component {
             <SearchBar onClick={() => this.handleClick()} onChange={event => this.handleChange(event)} default={this.state.value} disabled={this.state.disabled}/>
             <div className="row py-3 justify-content-center" id="showResults" >
                 <MoviePoster ricerca={this.state.data || "default"} error={this.state.error} />
+                <IsLoading/>
             </div>
             </>
         )

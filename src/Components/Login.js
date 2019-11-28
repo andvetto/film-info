@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import Auth from '../Auth/auth';
+import IsLoading from './IsLoading';
+import { trackPromise } from 'react-promise-tracker';
 
 const Login = (pars) => {
 
@@ -10,14 +12,14 @@ const Login = (pars) => {
 
     const loginUser = (e) => {
         e.preventDefault()
-        
+        trackPromise(
         Auth.login(email, password)
             .then ( payload => {
                 
                 pars.history.push('/');
                 
-            });
-
+            }))
+        
     }
 
     const resetForm = e => {
@@ -57,6 +59,7 @@ const Login = (pars) => {
                 </div>
 
             </form>
+            <IsLoading color="#2BAD60"/>
         </div>
         </>
     );
