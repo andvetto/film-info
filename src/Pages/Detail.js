@@ -9,6 +9,7 @@ const axios = require('axios');
 const API_BACKEND = Config.API_BACKEND;
 
 
+
 class Detail extends React.Component { 
 
 
@@ -22,6 +23,10 @@ class Detail extends React.Component {
             isTokenExpired: Auth.isTokenExpired(),
             
         };
+
+
+        
+
     }  
 
     
@@ -111,6 +116,20 @@ class Detail extends React.Component {
         //.then(console.log(this.state.risultato, "pippo"))
     }
 
+
+findLongestWord(str) {
+    var array = str.split(' ')
+    var longestWord = "";
+
+    array.forEach(function(word) {
+        if(word.length > longestWord.length) {
+            longestWord = word;
+        }
+    });
+
+    return longestWord;
+}
+
     render(){
         var bottone;
         //console.log(this.state.token)
@@ -126,6 +145,7 @@ class Detail extends React.Component {
                 bottone = <i className="fa fa-star stellaGialla" onClick={() => this.cancella()} aria-hidden="true"></i>
             }
         }
+
         if(this.state.data){
             let film = this.state.data;
             return (
@@ -138,7 +158,7 @@ class Detail extends React.Component {
                     <p>Genre: {film.Genre}</p>
                     <p>Runtime: {film.Runtime}</p>
                     <p>Year: {film.Year}</p>
-                    <NavLink exact to={ `/${film.Title.split(" ")[0]}` } className="btn btn-primary mx-2">
+                    <NavLink exact to={"/" + this.findLongestWord(film.Title)} className="btn btn-primary mx-2">
                         Go Back
                     </NavLink>
                     {bottone}
