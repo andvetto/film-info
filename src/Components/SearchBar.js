@@ -6,6 +6,7 @@ import Auth from '../Auth/auth';
 function SearchBar(props){
 
         const user = Auth.getUser();
+        const isTokenExpired = Auth.isTokenExpired();
         //console.log(user)
         return(
             
@@ -15,7 +16,7 @@ function SearchBar(props){
                 <input className="form-control col-sm-4 my-2" id="cerca" onChange={props.onChange} type="text" value={props.default} placeholder="Search" aria-label="Search"/>
                 <button className="btn btn-block btn-outline-success mx-2" disabled={props.disabled} onClick={props.onClick} >Search</button>
 
-                { user ? null : (
+                { !user || isTokenExpired ? (
                 
                     <>
                     <NavLink exact to={ "/user/login" } className="btn btn-block btn-outline-info mx-2">
@@ -25,9 +26,9 @@ function SearchBar(props){
                         Signup
                     </NavLink>
                     </>
-                    )
+                    ) :null
                 }
-                { user ? (
+                { user && !isTokenExpired  ? (
                     <>
                     <NavLink exact to={ "/favorites/list" } className="btn btn-block btn-outline-warning mx-2">
                         {user.name}
@@ -37,7 +38,7 @@ function SearchBar(props){
                         Logout
                     </NavLink>
                     </>
-        ) : null
+                    ) : null
     }
 
             </nav>

@@ -5,6 +5,15 @@ const AUTH_URL = Config.AUTH_URL;
 
 function Auth(){
 
+    const isTokenExpired = () => {
+        const expires = +localStorage.getItem('token-expires');
+        const res = (new Date()) > expires;
+        if(res){
+            localStorage.removeItem('token-expires');
+            localStorage.removeItem('auth');
+        }
+        return res;
+    }
 
     const addAxiosToken = () => {
         const token = getToken();
@@ -29,9 +38,9 @@ function Auth(){
                 return Promise.rejected('Invalid server response');
             }
 
+            const expireDate = (new Date()).getTime() + data['expires_in']*1000;
 
-            //console.log(result.data);
- 
+            localStorage.setItem('token-expires', expireDate);
             localStorage.setItem('auth', JSON.stringify(result.data));
 
             return result.data;
@@ -42,6 +51,10 @@ function Auth(){
     };
 
     const getToken = () => {
+
+        if(isTokenExpired()){
+            return null
+        }
 
         const auth = JSON.parse(localStorage.getItem('auth'));
         if(auth) {
@@ -76,7 +89,9 @@ function Auth(){
                 return Promise.rejected('Invalid server response');
             }
             
-            //console.log(result.data);
+            const expireDate = (new Date()).getTime() + data['expires_in']*1000;
+
+            localStorage.setItem('token-expires', expireDate);
 
             localStorage.setItem('auth', JSON.stringify(result.data));
 
@@ -111,6 +126,7 @@ function Auth(){
         signup,
         logout,
         getToken,
+        isTokenExpired,
 
     }
 

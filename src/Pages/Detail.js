@@ -19,6 +19,7 @@ class Detail extends React.Component {
             risultato: [],
             user: Auth.getUser(),
             token: Auth.getToken(),
+            isTokenExpired: Auth.isTokenExpired(),
             
         };
     }  
@@ -29,7 +30,7 @@ class Detail extends React.Component {
 
         let imdbID = this.props.match.params.imdbID;
         const API_KEY = "apikey=7e18b2af";
-        
+
         trackPromise(
         fetch(`https://www.omdbapi.com/?i=${imdbID}&${API_KEY}`)
             .then(response => {
@@ -66,7 +67,7 @@ class Detail extends React.Component {
     }
 
 
-   cancella() {
+    cancella() {
         
         let film = this.state.data;
         let token = this.state.token;
@@ -74,7 +75,7 @@ class Detail extends React.Component {
         if(token){
             axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
         }
-       
+
    
         //fetch(`https://film-info-35efc.firebaseio.com/favorite/films/${film.imdbID}.json`, 
         axios.delete(`${API_BACKEND}/favorites/${this.state.user.id}/delete/${film.imdbID}`)
@@ -85,8 +86,8 @@ class Detail extends React.Component {
     manda() {
 
         let film = this.state.data;
-
         let token = this.state.token;
+
         if(token){
             axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
         }
@@ -115,16 +116,16 @@ class Detail extends React.Component {
         //console.log(this.state.token)
         //console.log(this.state.risultato, "pluto")
         //var classe = this.state.risultato.length ? "gialla" : "bianca" ;
-        if(this.state.user){
+        if(this.state.user && !this.state.isTokenExpired){
 
         
-        if(this.state.risultato.length===0){
-            bottone = <i className="fa fa-star stellaBianca" onClick={() => this.manda()} aria-hidden="true"></i>
+            if(this.state.risultato.length===0){
+                bottone = <i className="fa fa-star stellaBianca" onClick={() => this.manda()} aria-hidden="true"></i>
 
-        } else {
-            bottone = <i className="fa fa-star stellaGialla" onClick={() => this.cancella()} aria-hidden="true"></i>
+            } else {
+                bottone = <i className="fa fa-star stellaGialla" onClick={() => this.cancella()} aria-hidden="true"></i>
+            }
         }
-    }
         if(this.state.data){
             let film = this.state.data;
             return (
