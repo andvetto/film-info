@@ -24,9 +24,6 @@ class Detail extends React.Component {
             
         };
 
-
-        
-
     }  
 
     

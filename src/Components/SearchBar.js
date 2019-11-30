@@ -2,10 +2,11 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import Auth from '../Auth/auth';
+import {UserDataContext} from '../Containers/logincontext';
 
 function SearchBar(props){
 
-        const user = Auth.getUser();
+        const [user] = React.useContext(UserDataContext);
         const isTokenExpired = Auth.isTokenExpired();
         //console.log(user)
         return(

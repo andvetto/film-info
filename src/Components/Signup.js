@@ -5,22 +5,33 @@ import { NavLink } from 'react-router-dom';
 import Auth from '../Auth/auth';
 import IsLoading from './IsLoading';
 import { trackPromise } from 'react-promise-tracker';
+import {UserDataContext} from '../Containers/logincontext';
 
 const Signup = (pars) => {
 
+    const [, setUser] = React.useContext(UserDataContext);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [name, setName] = useState('');
+    const [error, setError] = useState('');
 
     const signupUser = (e) => {
         e.preventDefault()
         trackPromise(
         Auth.signup(email, name, password)
-            .then ( payload => {
-                
+        .then( payload => {
+
+            if(payload.user){
+                setUser(payload.user)
                 pars.history.push('/');
+            }
+            else{
+                setError("Email already taken!");
                 
-            }));
+            }
+           
+
+        }));
 
     }
 
@@ -30,6 +41,16 @@ const Signup = (pars) => {
         setEmail('');
         setPassword('');
         setName('');
+    }
+
+
+    const isError = error => {
+        if(error!==""){
+            return (            <div className="container-fluid text-center mb-2">
+            <h3 className="mb-3">{error}</h3>
+        </div>)
+        }
+        return null;
     }
 
     return(
@@ -67,6 +88,9 @@ const Signup = (pars) => {
                 </div>
 
             </form>
+
+            {isError(error)}
+
             <IsLoading color="#2BAD60"/>
         </div>
         </>

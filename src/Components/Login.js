@@ -4,28 +4,49 @@ import { NavLink } from 'react-router-dom';
 import Auth from '../Auth/auth';
 import IsLoading from './IsLoading';
 import { trackPromise } from 'react-promise-tracker';
+import {UserDataContext} from '../Containers/logincontext';
 
 const Login = (pars) => {
 
+    const [, setUser] = React.useContext(UserDataContext);
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
 
     const loginUser = (e) => {
         e.preventDefault()
         trackPromise(
         Auth.login(email, password)
-            .then ( payload => {
-                
-                pars.history.push('/');
-                
-            }))
-        
+            .then( payload => {
+
+                if(payload.user){
+                    setUser(payload.user)
+                    pars.history.push('/');
+                }
+                else{
+                    setError("Wrong email or password!");
+                    
+                }
+               
+
+            }));
+            
     }
 
     const resetForm = e => {
         e.preventDefault()
         setEmail('');
         setPassword('');
+    }
+
+    const isError = error => {
+        if(error!==""){
+            return (            <div className="container-fluid text-center mb-2">
+            <h3 className="mb-3">{error}</h3>
+        </div>)
+        }
+        return null;
     }
 
     return(
@@ -59,6 +80,9 @@ const Login = (pars) => {
                 </div>
 
             </form>
+
+            {isError(error)}
+
             <IsLoading color="#2BAD60"/>
         </div>
         </>
