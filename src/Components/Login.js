@@ -1,7 +1,7 @@
-
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import Auth from '../Auth/auth';
+import Validation from './Validation';
 import IsLoading from './IsLoading';
 import { trackPromise } from 'react-promise-tracker';
 import {UserDataContext} from '../Containers/logincontext';
@@ -27,11 +27,8 @@ const Login = (pars) => {
                 else{
                     setError("Wrong email or password!");
                     
-                }
-               
-
-            }));
-            
+                }   
+            }));       
     }
 
     const resetForm = e => {
@@ -42,17 +39,21 @@ const Login = (pars) => {
 
     const isError = error => {
         if(error!==""){
-            return (            <div className="container-fluid text-center mb-2">
-            <h3 className="mb-3">{error}</h3>
-        </div>)
+            return (   
+                <div className="container-fluid text-center mb-2">
+                    <h3 className="mb-3">{error}</h3>
+                </div>
+            )
         }
         return null;
     }
 
+    const disabled = !Validation.validateLogin(email, password);
+
     return(
         
         <>
-        <h2 className=" mb-3">Login</h2>
+        <h2 className="mb-3">Login</h2>
         <div className="row justify-content-center">
             
             <form className="form col-sm-6 col-md-4" onSubmit={loginUser}>
@@ -71,7 +72,7 @@ const Login = (pars) => {
                 </div>
 
                 <div className="form-group">
-                    <button className="btn btn-success">Login</button>
+                    <button className="btn btn-success" disabled={disabled} >Login</button>
                     <NavLink exact to="/" className="btn btn-primary mx-2 my-2">
                         Go Back
                     </NavLink>

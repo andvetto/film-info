@@ -1,8 +1,7 @@
-
-
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import Auth from '../Auth/auth';
+import Validation from './Validation';
 import IsLoading from './IsLoading';
 import { trackPromise } from 'react-promise-tracker';
 import {UserDataContext} from '../Containers/logincontext';
@@ -35,7 +34,6 @@ const Signup = (pars) => {
 
     }
 
-
     const resetForm = e => {
         e.preventDefault()
         setEmail('');
@@ -43,15 +41,18 @@ const Signup = (pars) => {
         setName('');
     }
 
-
     const isError = error => {
         if(error!==""){
-            return (            <div className="container-fluid text-center mb-2">
-            <h3 className="mb-3">{error}</h3>
-        </div>)
+            return (
+                <div className="container-fluid text-center mb-2">
+                    <h3 className="mb-3">{error}</h3>
+                </div>
+            )
         }
         return null;
     }
+
+    const disabled = Validation.validateSignup(email, password, name);
 
     return(
         <>
@@ -80,7 +81,7 @@ const Signup = (pars) => {
                 </div>
 
                 <div className="form-group">
-                    <button className="btn btn-success">Signup</button>
+                    <button className="btn btn-success" disabled={disabled} >Signup</button>
                     <NavLink exact to="/" className="btn btn-primary mx-2 my-2">
                         Go Back
                     </NavLink>
