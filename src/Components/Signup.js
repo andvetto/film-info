@@ -18,21 +18,14 @@ const Signup = (pars) => {
         e.preventDefault()
         trackPromise(
         Auth.signup(email, name, password)
-        .then( payload => {
-
-            if(payload.user){
+            .then( payload => {
                 setUser(payload.user)
                 pars.history.push('/');
-            }
-            else{
-                setError("Email already taken!");
-                
-            }
-           
-
-        }));
-
-    }
+            })
+            .catch(err => {
+                setError(err);
+            }));
+}
 
     const resetForm = e => {
         e.preventDefault()
@@ -52,7 +45,7 @@ const Signup = (pars) => {
         return null;
     }
 
-    const disabled = Validation.validateSignup(email, password, name);
+    const disabled = !Validation.validateSignup(email, password, name);
 
     return(
         <>

@@ -19,16 +19,12 @@ const Login = (pars) => {
         trackPromise(
         Auth.login(email, password)
             .then( payload => {
-
-                if(payload.user){
-                    setUser(payload.user)
-                    pars.history.push('/');
-                }
-                else{
-                    setError("Wrong email or password!");
-                    
-                }   
-            }));       
+                setUser(payload.user)
+                pars.history.push('/');
+            })
+            .catch(err => {
+                setError(err);
+            }));
     }
 
     const resetForm = e => {

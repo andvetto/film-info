@@ -15,6 +15,24 @@ function Auth(){
         return res;
     }
 
+    const handleError = (resp) => {
+            let message = '';
+            switch (resp.status){
+                case 401: 
+                    message = resp.data.error;
+                    break;
+                /*
+                case 500: 
+                    message = resp.data.message;
+                    break;
+                */
+                default:
+                    message = 'Error contacting server.';
+            }
+
+            return message;
+    }
+
     const addAxiosToken = () => {
         const token = getToken();
         if(token){
@@ -35,7 +53,7 @@ function Auth(){
             
             const data = result['data'];
             if(!data || !data['access_token']){
-                return Promise.rejected('Invalid server response');
+                return Promise.reject('Invalid server response');
             }
 
             const expireDate = (new Date()).getTime() + data['expires_in']*1000;
@@ -45,8 +63,7 @@ function Auth(){
 
             return result.data;
         } catch (e){
-            //console.log(e)
-            return e;
+            return Promise.reject(handleError(e.response));
         }
     };
 
@@ -97,11 +114,8 @@ function Auth(){
 
             return result.data;
         } catch (e){
-            //console.log(e)
-            return e;
+            return Promise.reject(handleError(e.response));
         }
-
-
     };
 
     const logout = async () => {
