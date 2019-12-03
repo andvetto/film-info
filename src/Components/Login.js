@@ -20,7 +20,7 @@ const Login = (pars) => {
         Auth.login(email, password)
             .then( payload => {
                 setUser(payload.user)
-                pars.history.push('/');
+                pars.history.push('/favorites/list');
             })
             .catch(err => {
                 setError(err);
