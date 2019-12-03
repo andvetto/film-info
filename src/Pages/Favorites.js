@@ -27,33 +27,32 @@ export default class Favorites extends React.Component {
     
 
     componentDidMount() {
-    //    fetch(API_URL + '/posts')
-    //    fetch(`https://film-info-35efc.firebaseio.com/favorite.json`)
-    let token = this.state.token;
- 
-    if(token){
-        axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
-    }
 
-    let isTokenExpired = this.state.isTokenExpired;
+        let token = this.state.token;
     
-    if(isTokenExpired){
-        this.props.history.push('/user/login');
-    }
+        if(token){
+            axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
+        }
 
-    trackPromise(
-    axios.get(`${API_BACKEND}/favorites/list/${this.state.user.id}`)
-        .then(
-            
-            response => {
-                //console.log(response);
-                if (response.data!==[]){
-                    return this.setState({ films: response.data })
-                }
-                this.setState({ films: "error" })
-            }
-            )
-        .catch(error => this.setState({ error: error })));
+        let isTokenExpired = this.state.isTokenExpired;
+        
+        if(isTokenExpired){
+            this.props.history.push('/user/login');
+        }
+
+        trackPromise(
+            axios.get(`${API_BACKEND}/favorites/list/${this.state.user.id}`)
+                .then(
+                    response => {
+                        //console.log(response);
+                        if (response.data!==[]){
+                            return this.setState({ films: response.data })
+                        }
+                        this.setState({ films: "error" })
+                    }
+                )
+                .catch(error => this.setState({ error: error }))
+        );
         
     }
 
